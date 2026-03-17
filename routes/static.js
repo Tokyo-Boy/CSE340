@@ -1,5 +1,9 @@
 const express = require('express');
+const baseController = require('../controllers/baseController');
 const router = express.Router();
+
+router.get("/", baseController.buildHome)
+
 
 // Static Routes
 // Set up "public" folder / subfolders for static files
