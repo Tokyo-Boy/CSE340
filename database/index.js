@@ -1,6 +1,8 @@
 const { Pool } = require("pg")
 require("dotenv").config()
 
+console.log("Current DATABASE_URL:", process.env.DATABASE_URL ? "Exists" : "MISSING")
+
 let pool
 
 if (process.env.NODE_ENV == "development") {
