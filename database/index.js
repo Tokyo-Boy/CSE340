@@ -20,7 +20,6 @@ if (process.env.NODE_ENV == "development") {
   })
 }
 
-// Export the query method and the pool
 module.exports = {
   async query(text, params) {
     try {
