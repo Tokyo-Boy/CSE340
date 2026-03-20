@@ -25,8 +25,8 @@ Util.getNav = async function (req, res, next) {
 }
 
 /* **************************************
-* Build the classification view HTML
-* ************************************ */
+ * Build the classification view HTML
+ * ************************************ */
 Util.buildClassificationGrid = async function(data){
   let grid = "" 
   if(data.length > 0){
@@ -56,5 +56,31 @@ Util.buildClassificationGrid = async function(data){
   }
   return grid
 }
+
+/* **************************************
+ * Build the vehicle detail HTML (Task 1)
+ * ************************************ */
+Util.buildVehicleDetail = async function (data) {
+  let display
+  if (data) {
+    display = '<div id="detail-display">'
+    display += `<div class="detail-image"><img src="${data.inv_image}" alt="${data.inv_make} ${data.inv_model} on CSE Motors"></div>`
+    display += '<div class="detail-info">'
+    display += `<h2>${data.inv_year} ${data.inv_make} ${data.inv_model}</h2>`
+    display += `<p class="price"><strong>Price:</strong> $${new Intl.NumberFormat('en-US').format(data.inv_price)}</p>`
+    display += `<p><strong>Description:</strong> ${data.inv_description}</p>`
+    display += `<p><strong>Color:</strong> ${data.inv_color}</p>`
+    display += `<p><strong>Mileage:</strong> ${data.inv_miles.toLocaleString()} miles</p>`
+    display += '</div></div>'
+  } else {
+    display = '<p class="notice">Sorry, no matching vehicle could be found.</p>'
+  }
+  return display
+}
+
+/* ****************************************
+ * Middleware For Handling Errors (Task 2)
+ **************************************** */
+Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
 
 module.exports = Util

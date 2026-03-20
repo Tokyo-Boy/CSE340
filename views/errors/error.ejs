@@ -1,9 +1,12 @@
-<!-- Error Code -->
+<div id="error-container">
+    <% if (title) { %>
+        <h1><%= title %></h1>
+    <% } %>
 
-<% if (title){ %>
-<h1><%= title %></h1>
-<% } else {
-    res.redirect('/')
-} %>
-
-<%- message %>
+    <div class="error-content">
+        <p><%= message %></p>
+        <img src="/images/site/crash.webp" alt="Crashed cars" class="error-image">
+        
+        <p>Maybe try a different route?</p>
+    </div>
+</div>

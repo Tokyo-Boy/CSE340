@@ -6,15 +6,14 @@
 /* ***********************
  * Require Statements
  *************************/
-const dotenv = require("dotenv")
-dotenv.config() // Must be at the very top to load variables early
+const dotenv = require("dotenv").config()
 const express = require("express")
 const expressLayouts = require("express-ejs-layouts")
-const app = express()
-const utilities = require("./utilities/")
 const path = require("path")
+const app = express()
 
-// Require internal modules after dotenv
+// Internal modules
+const utilities = require("./utilities/")
 const baseController = require("./controllers/baseController")
 const static = require("./routes/static")
 const inventoryRoute = require("./controllers/inventoryRoute")
@@ -25,28 +24,50 @@ const inventoryRoute = require("./controllers/inventoryRoute")
 app.set("views", path.join(__dirname, "views"))
 app.set("view engine", "ejs")
 app.use(expressLayouts)
-app.set("layout", "./layouts/layout") // not at views root
+app.set("layout", "./layouts/layout")
+
+/* ***********************
+ * Middleware (Fail-Safe Session/Flash)
+ *************************/
+try {
+  const session = require("express-session")
+  const flash = require("connect-flash")
+
+  app.use(session({
+    secret: process.env.SESSION_SECRET || 'developer-secret-key',
+    resave: true,
+    saveUninitialized: true,
+    name: 'sessionId',
+  }))
+
+  app.use(flash())
+
+  app.use(function(req, res, next){
+    res.locals.messages = require('express-messages')(req, res)
+    next()
+  })
+} catch (e) {
+
+  app.use((req, res, next) => {
+    res.locals.messages = () => ""
+    next()
+  })
+}
 
 /* ***********************
  * Routes
  *************************/
 app.use(static)
-
-// Inventory routes
 app.use("/inv", inventoryRoute)
-
-// Index route
 app.get("/", baseController.buildHome)
 
-// File Not Found Route - must be last route in list
+/* ***********************
+ * Error Handling
+ *************************/
 app.use(async (req, res, next) => {
   next({status: 404, message: 'Sorry, we appear to have lost that page.'})
 })
 
-/* ***********************
-* Express Error Handler
-* Place after all other middleware
-*************************/
 app.use(async (err, req, res, next) => {
   let nav = await utilities.getNav()
   console.error(`Error at: "${req.originalUrl}": ${err.message}`)
@@ -59,14 +80,10 @@ app.use(async (err, req, res, next) => {
 
 /* ***********************
  * Local Server Information
- * Values from environment variables
  *************************/
 const port = process.env.PORT || 10000
 const host = process.env.HOST || '0.0.0.0' 
 
-/* ***********************
- * Log statement to confirm server operation
- *************************/
 app.listen(port, () => {
   console.log(`app listening on ${host}:${port}`)
 })
