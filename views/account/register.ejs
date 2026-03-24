@@ -1,0 +1,38 @@
+
+
+<main>
+  <h1><%= title %></h1>
+
+  <% if (errors) { %>
+    <ul class="notice">
+      <% errors.array().forEach(error => { %>
+        <li><%= error.msg %></li>
+      <% }) %>
+    </ul>
+  <% } %>
+
+  <div class="login-container">
+    <p class="form-header">ALL FIELDS ARE REQUIRED.</p>
+    
+    <form id="registerForm" action="/account/register" method="post">
+      <label for="account_firstname">First name:</label>
+      <input type="text" name="account_firstname" id="account_firstname" required>
+
+      <label for="account_lastname">Last name:</label>
+      <input type="text" name="account_lastname" id="account_lastname" required>
+
+      <label for="account_email">Email Address:</label>
+      <input type="email" name="account_email" id="account_email" required placeholder="Enter valid email address">
+
+      <label for="account_password">Password:</label>
+      <span>Passwords must be minimum of 12 characters and include 1 capital letter, 1 number and 1 special character.</span>
+      <input type="password" name="account_password" id="account_password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{12,}$">
+
+      <button type="button" id="showPassword">Show Password</button>
+      
+      <button type="submit" class="submitBtn">Register</button>
+    </form>
+  </div>
+</main>
+
+<script src="/js/showpass.js"></script>

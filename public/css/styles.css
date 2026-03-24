@@ -324,4 +324,86 @@ footer {
     text-align: center;
     margin-bottom: 20px;
   }
+
+  /* LOGIN Section */
+  .login-container {
+    background-color: #0096C7;
+    color: black;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 450px;
+    margin: 20px auto;
+    border: 2px solid #ADD8E6; 
+  }
+
+  .login-container form {
+      display: flex;
+      flex-direction: column;
+  }
+
+  .login-container label {
+      font-weight: bold;
+      margin-top: 10px;
+  }
+
+  .login-container span {
+      font-style: italic;
+      font-size: 0.9rem;
+      margin: 5px 0;
+  }
+
+  .login-container input {
+      padding: 8px;
+      margin-bottom: 10px;
+      border: none;
+  }
+
+
+  #showPassword {
+      background-color: #333;
+      color: white;
+      width: fit-content;
+      padding: 8px 15px;
+      border-radius: 20px;
+      border: none;
+      margin: 10px 0;
+      cursor: pointer;
+  }
+
+  .submitBtn {
+      width: fit-content;
+      padding: 5px 15px;
+      cursor: pointer;
+      background-color: #efefef;
+      border: 1px solid #767676;
+      border-radius: 2px;
+  }
+
+  .login-container p {
+      text-align: center;
+      margin-top: 20px;
+  }
+
+  .login-container p a {
+      color: #0000EE;
+      font-weight: bold;
+  }
+
+  input:required:invalid, input:focus:invalid {
+      color: red;
+  }
+  input:required:valid {
+      color: greenyellow;
+  }
+  input:required:invalid, input:focus:invalid {
+  background-image: url(/images/invalid.png);
+  background-position: right top;
+  background-repeat: no-repeat;
+  }
+  input:required:valid {
+  background-image: url(/images/valid.png);
+  background-position: right top;
+  background-repeat: no-repeat;
+  }
 }
+
