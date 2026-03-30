@@ -20,7 +20,7 @@ const bodyParser = require("body-parser")
 const utilities = require("./utilities/")
 const baseController = require("./controllers/baseController")
 const static = require("./routes/static")
-const inventoryRoute = require("./controllers/inventoryRoute")
+const inventoryRoute = require("./routes/inventoryRoute")
 
 
 /* ***********************

@@ -1,0 +1,16 @@
+<h1><%= title %></h1>
+
+<% if (messages) { %>
+    <%- messages() %>
+<% } %>
+
+<div class="management-options">
+    <ul>
+        <li>
+            <a href="/inv/add-classification" title="Add a new category of vehicle">Add New Classification</a>
+        </li>
+        <li>
+            <a href="/inv/add-inventory" title="Add a new vehicle to the system">Add New Inventory Item</a>
+        </li>
+    </ul>
+</div>

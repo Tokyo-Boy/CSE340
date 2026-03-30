@@ -405,5 +405,69 @@ footer {
   background-position: right top;
   background-repeat: no-repeat;
   }
+  .form-container {
+  background-color: #008eb0; /* The specific teal/blue from the video */
+  border: 2px solid #ffffff;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 500px; /* Limits the width for a clean look */
+  color: #ffffff; /* Sets all text inside to white */
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Form Titles */
+.form-container h1 {
+  margin-top: 0;
+  text-align: center;
+}
+
+/* Field labels */
+.form-container label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+/* Inputs, Selects, and Textareas */
+.form-container input, 
+.form-container select, 
+.form-container textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  display: block;
+  box-sizing: border-box; /* Crucial: prevents inputs from overflowing the blue box */
+}
+
+/* The Submit Button */
+.form-container button, 
+.form-container input[type="submit"] {
+  background-color: #efefef;
+  color: #333;
+  padding: 10px 20px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 3px;
+  font-weight: bold;
+  cursor: pointer;
+  width: auto; /* Makes the button only as wide as the text */
+}
+
+.form-container button:hover {
+  background-color: #ddd;
+}
+
+/* Error/Notice list inside the blue box */
+.notice {
+  background-color: white;
+  color: #cc0000;
+  padding: 10px 10px 10px 30px;
+  border-radius: 3px;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
 }
 
